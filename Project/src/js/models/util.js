@@ -1,0 +1,1 @@
+export const dayLengthNames = ["fullDayNames", "mdDayNames", "shDayNames" ]

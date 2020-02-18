@@ -1,0 +1,15 @@
+{
+  "en": {
+    "fullDayNames": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "mdDayNames": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "shDayNames": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+  }
+}
