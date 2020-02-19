@@ -7,19 +7,15 @@ export default class WeekPlannerView {
     let htmlMarkup = `
     <div class="wkPlan">
       <h1 class="wkPlan-title__h1">WeekP</h1>
-      <section class="wkPlan__body d-flex flex-row">
-        <div class="wkPlan__time wkPlan-col--time">
+      <section class="wkPlan-col d-flex flex-row">
+        <div class="wkPlan__time wkPlan-col__time">
           ${this._RenderTimes(is24Hours)}
         </div>
       </section>
       <section class="wkPlan-line">
-      <div class="wkPlan-line__ver">
-      ${this._RenderVerticalLine()}
-      </div>
       <div class="wkPlan-line__hor">
       ${this._RenderHorizontalLine()}
       </div>
-
       </section>
     </div>
     `;
@@ -30,14 +26,6 @@ export default class WeekPlannerView {
     let htmlMarkup = "";
     for (let i = 0; i < 24; i++) {
       htmlMarkup +=`<hr class="wkPlan-line__hor-line">`
-    }
-    return htmlMarkup;
-  }
-
-  _RenderVerticalLine() {
-    let htmlMarkup = "";
-    for (let i = 0; i < 6; i++) {
-      htmlMarkup +=`<div class="wkPlan-line__ver-line"></div>`
     }
     return htmlMarkup;
   }

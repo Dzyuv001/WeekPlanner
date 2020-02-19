@@ -53,7 +53,7 @@ export default class WeekPlanner {
       var lastElements = names.slice(this.weekStart, names.language);
       names = lastElements.push(names);
     }
-    
+    console.log("this is the days gain from data set", names)
     return names;
   }
 }

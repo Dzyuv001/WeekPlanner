@@ -1,11 +1,26 @@
 .wkPlan-col {
-  position: relative;
-  width: 12.5%;
-  text-align: center;
-  &--time {
-    width: 10%;
+
+  
+
+  &__day {
+    width: 12.5%;
+    position: relative;
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    &:nth-child(2) {
+        border-left: 1px solid rgba(0, 0, 0, 0.1);
+      }
   }
+
+  &__time {
+    width: 7.5%;
+    display: inline-block;
+  }
+
   &__title {
+    width: 12.5%;
+    height: 5.7rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     &--fixed {
       position: fixed;
     }

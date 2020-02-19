@@ -17,7 +17,7 @@ export default class WeekPlanner {
   }
 
   _ConfigureWeekDays(element,WeekDayNames) {
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       this.WeekDays.push(new WeekDay(element, WeekDayNames[i]));
     }
   }
