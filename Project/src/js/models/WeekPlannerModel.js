@@ -53,6 +53,7 @@ export default class WeekPlanner {
       var lastElements = names.slice(this.weekStart, names.language);
       names = lastElements.push(names);
     }
+    
     return names;
   }
 }

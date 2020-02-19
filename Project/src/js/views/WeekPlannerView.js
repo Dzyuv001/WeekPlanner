@@ -3,25 +3,42 @@ import * as base from "./base";
 export default class WeekPlannerView {
   constructor() {}
 
-  _BuildMarkup() {
-    let htmlMarkup = ``;
-
+  _RenderMarkup(is24Hours) {
+    let htmlMarkup = `
+    <h1 class="wkPlan-title__h1">WeekP</h1>
+    <section class="wkPlan__body">
+      <div class="wkPlan__times wkPlan-times">
+        ${this._RenderTimes(is24Hours)}
+      </div>
+    </section>
+    `;
     return htmlMarkup;
   }
 
-  testfunc() {
-    console.log("this is a test func");
+  _RenderTimes(is24Hours) {
+    let htmlMarkup = "";
+    if (is24Hours) {
+      for (let i = 0; i < 24; i++) {
+        htmlMarkup += `<div class="wkPlan-times__time-label"> ${i}</div>`;
+      }
+    } else {
+      const time = ["AM", "PM"];
+      for (let j = 0; j < 2; j++) {
+        for (let i = 0; i < 12; i++) {
+          htmlMarkup += `<div class="wkPlan-times__time-label">${i + 1}  ${
+            time[j]
+          }</div>`;
+        }
+      }
+    }
+    return htmlMarkup;
   }
 
-  RenderView(element) {
+  RenderView(element, is24Hours) {
+    //timeFormat
     let rootElement = document.getElementsByClassName(element)[0];
-    this.testfunc();
-    console.log("adding the ui", rootElement);
     if (typeof rootElement != "undefined" && rootElement != null) {
-      console.log("adding the ui");
-
-      rootElement.innerHTML = this._BuildMarkup();
-      // rootElement.innerHTML = "<p>this is a test to see if this is working and if not why not </p>"
+      rootElement.innerHTML = this._RenderMarkup(is24Hours);
     }
   }
 }

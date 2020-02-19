@@ -3,20 +3,22 @@ import * as base from "./base";
 export default class WeekDayView {
   constructor() {}
 
-  static _BuildMarkup() {
+  static _BuildMarkup(DayName) {
     let htmlMarkup = `
-    <p class="wkPlan-title">Week Planner</p>
-    <section class="wkPlan-body"></section>
+    <div class="wkPlan-col">
+    <h2 class="wkPlan-col__title wkPlan-title__h2">${DayName}</h2>
+    <div class="wkPlan-col__event-container">
+    
+    </div>
+    </div>
     `;
-
     return htmlMarkup;
   }
 
-  static RenderView(element) {
-    let rootElement = document.getElementsByClassName(element)[0];
-    this.testfunc();
+  static RenderView(element, DayName) {
+    let rootElement = document.querySelector(`.${element} .wkPlan__body`);
     if (typeof rootElement != "undefined" && rootElement != null) {
-      rootElement.innerHTML = this._BuildMarkup();
+      rootElement.insertAdjacentHTML("beforeend", this._BuildMarkup(DayName));
     }
   }
 }
