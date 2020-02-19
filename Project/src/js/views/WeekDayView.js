@@ -6,9 +6,8 @@ export default class WeekDayView {
   static _BuildMarkup(DayName) {
     let htmlMarkup = `
     <div class="wkPlan-col">
-    <h2 class="wkPlan-col__title wkPlan-title__h2">${DayName}</h2>
+    <h2 class="wkPlan-col__title wkPlan-col__title--fixed wkPlan-title__h2 ">${DayName}</h2>
     <div class="wkPlan-col__event-container">
-    
     </div>
     </div>
     `;

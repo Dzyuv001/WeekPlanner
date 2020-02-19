@@ -1,0 +1,13 @@
+.wkPlan-col {
+  position: relative;
+  width: 12.5%;
+  text-align: center;
+  &--time {
+    width: 10%;
+  }
+  &__title {
+    &--fixed {
+      position: fixed;
+    }
+  }
+}

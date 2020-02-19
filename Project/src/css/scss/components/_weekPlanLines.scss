@@ -1,0 +1,39 @@
+.wkPlan-line {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  &__hor {
+    width: 100%;
+    height: 100%;
+    margin-top: 8.2rem;
+    position: absolute;
+    padding-left: 7.5rem;
+    &-line {
+      margin-bottom: 9.9rem;
+    }
+  }
+  &__ver { 
+    width: 100%;
+    height: 100%;
+    padding-top: 7.5rem;
+    position: absolute;
+    &-line {
+      width: 1px;
+      height:100%;
+      padding-top:9.9rem;
+      display: inline-block;
+      margin-left: 12.5%;
+      background: rgba(0, 0, 0, 0.1);
+      &:first-child {
+        margin-left: 8.1rem;
+        margin-right:-.6rem;
+      }
+      &:last-child {
+
+      }
+    }
+  }
+}
