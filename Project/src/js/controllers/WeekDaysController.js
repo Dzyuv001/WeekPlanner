@@ -3,8 +3,8 @@ import WeekDayView from "../views/WeekDayView";
 import WeekDayModel from "../models/WeekDayModel";
 
 export default class WeekDay {
-  constructor(element, WeekDayName) {
+  constructor(element, WeekDayName, index) {
     this.Events = [];
-    WeekDayView.RenderView(element, WeekDayName);
+    WeekDayView.RenderView(element, WeekDayName, index);
   }
 }

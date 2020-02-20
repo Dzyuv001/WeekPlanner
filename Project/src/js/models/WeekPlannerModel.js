@@ -34,9 +34,7 @@ export default class WeekPlanner {
 
   _ValidateLanguage(language) {
     if (isNaN(language)) {
-      var isoCodeString = Iso2Code
-        .toString()
-        .toLowerCase();
+      var isoCodeString = Iso2Code.toString().toLowerCase();
       language = language.toLowerCase();
       if (isoCodeString.includes(language)) {
         return language;
@@ -47,13 +45,15 @@ export default class WeekPlanner {
   }
 
   GetDayTitles() {
-    let names = WeekDayData[this.language][this.length];
-
+    const names = WeekDayData[this.language][this.length];
+    let dayData = [];
+    names.forEach((name, i) => {
+      dayData.push({ name, index:i });
+    });
     if (this.weekStart != 0) {
-      var lastElements = names.slice(this.weekStart, names.language);
-      names = lastElements.push(names);
+      var lastElements = dayData.slice(this.weekStart, names.language);
+      dayData = lastElements.push(dayData);
     }
-    console.log("this is the days gain from data set", names)
-    return names;
+    return dayData;
   }
 }
