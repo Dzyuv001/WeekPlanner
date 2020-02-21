@@ -1,19 +1,19 @@
 import EventView from "../views/EventView";
 export default class Event {
-  constructor(timePosition, element, colIndex) {
+  constructor(timePosition, element) {
     const eventData = this._CalcTime(timePosition);
     this.startTime = eventData.startTime;
     this.endTime = eventData.endTime;
     this.eventContinues = "";
-    this.CreateEventUI(element, colIndex, timePosition);
+    this.CreateEventUI(element, timePosition);
   }
 
-  CreateEventUI(element, colIndex, timePosition) {
+  CreateEventUI(element, timePosition) {
     console.log("element is ", element);
     //change time position value to a percentage so 
     //that the view can correctly position the element
     const percentage = timePosition/96 *  100;
-    EventView.RenderEvent(element, colIndex, percentage);
+    EventView.RenderEvent(element, percentage);
   }
 
   SetTimes() {}

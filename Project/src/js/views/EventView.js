@@ -9,7 +9,7 @@ export default class EventView {
     return htmlMarkup;
   }
 
-  static RenderEvent(element, colIndex, percentage) {
+  static RenderEvent(element, percentage) {
     if (typeof element != "undefined" && element != null) {
       element.insertAdjacentHTML(
         "beforeend",
