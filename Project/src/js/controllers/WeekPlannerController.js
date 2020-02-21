@@ -26,10 +26,15 @@ export default class WeekPlanner {
   _Events(element) {
     document.getElementsByClassName(element)[0].addEventListener("click", e => {
       if (e.target && e.target.classList.contains("wkPlan-col__day")) {
-        //used to get the percentage click position 
-       let yPositionPercent = Math.floor(e.offsetY/e.target.offsetHeight*96);
-       console.log(yPositionPercent);
-      //  this.WeekDays[]
+        //used to get the percentage click position
+        const dataValues = e.target.getAttribute("data-value").split("_");
+        const dayIndex = dataValues[0];
+        const actualDayIndex = dataValues[1];
+        let yPositionPercent = Math.floor(
+          (e.offsetY / e.target.offsetHeight) * 96
+        );
+        this.WeekDays[dayIndex].AddEventToDay(yPositionPercent);
+        
       }
     });
   }
