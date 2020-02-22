@@ -28,13 +28,18 @@ export default class WeekPlanner {
       if (e.target && e.target.classList.contains("wkPlan-col__day")) {
         //used to get the percentage click position
         const dataValues = e.target.getAttribute("data-value").split("_");
-        const dayIndex = dataValues[0];
+        const colIndex = dataValues[0];
         const actualDayIndex = dataValues[1];
         let yPositionPercent = Math.floor(
           (e.offsetY / e.target.offsetHeight) * 96
         );
-        this.WeekDays[dayIndex].AddEventToDay(yPositionPercent);
-        
+        this.WeekDays[colIndex].AddEventToDay(yPositionPercent, colIndex);
+
+      }
+      if (e.target && e.target.classList.contains("wkPlan-event")){
+        //position one is set to the column and position two is set to event id.
+          var dataValueArray = e.target.getAttribute("data-value").split("_");
+        e.target.style.backgroundColor = "red";
       }
     });
   }
