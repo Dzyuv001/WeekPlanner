@@ -1,0 +1,96 @@
+.body {
+    background: green;
+}
+.wkPlan-colorpicker {
+
+  &__color {
+      display: inline-block;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    margin:.5rem;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &--red,
+    &--pink,
+    &--purple,
+    &--purple,
+    &--darkpurple,
+    &--indigo,
+    &--blue,
+    &--dodgerblue,
+    &--brown,
+    &--gray,
+    &--bluegray {
+      color: $color-white;
+    }
+
+    &--cyan,
+    &--teal,
+    &--green,
+    &--lightgreen,
+    &--lime,
+    &--yellow,
+    &--amber,
+    &--orange {
+        color: $color-black; 
+    }
+    &--red {
+      background-color: $colorpicker-red;
+    }
+    &--pink {
+      background-color: $colorpicker-pink;
+    }
+    &--purple {
+      background-color: $colorpicker-purple;
+    }
+    &--darkpurple {
+      background-color: $colorpicker-darkpurple;
+    }
+    &--indigo {
+      background-color: $colorpicker-indigo;
+    }
+    &--blue {
+      background-color: $colorpicker-blue;
+    }
+    &--dodgerblue {
+      background-color: $colorpicker-dodgerblue;
+    }
+    &--cyan {
+      background-color: $colorpicker-cyan;
+    }
+    &--teal {
+      background-color: $colorpicker-teal;
+    }
+    &--green {
+      background-color: $colorpicker-green;
+    }
+    &--lightgreen {
+      background-color: $colorpicker-lightgreen;
+    }
+    &--lime {
+      background-color: $colorpicker-lime;
+    }
+    &--yellow {
+      background-color: $colorpicker-yellow;
+    }
+    &--amber {
+      background-color: $colorpicker-amber;
+    }
+    &--orange {
+      background-color: $colorpicker-orange;
+    }
+    &--brown {
+      background-color: $colorpicker-brown;
+    }
+    &--gray {
+      background-color: $colorpicker-gray;
+    }
+    &--bluegray {
+      background-color: $colorpicker-bluegray;
+    }
+  }
+}

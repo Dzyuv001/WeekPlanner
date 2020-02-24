@@ -1,16 +1,18 @@
 import WeekPlannerView from "../views/WeekPlannerView";
 import WeekDay from "../controllers/WeekDaysController";
 import WeekPlannerModel from "../models/WeekPlannerModel";
+import EventEditForm from "../controllers/EventEditFormController";
 
 export default class WeekPlanner {
   constructor(element, config, data) {
-    this.WeekPlannerView = new WeekPlannerView();
-    this.WeekPlannerView.RenderView(element);
+    this.WeekPlannerView = new WeekPlannerView(element);
+    this.WeekPlannerView.RenderView();
     this.WeekPlannerModel = new WeekPlannerModel();
     this.WeekDays = [];
     const WeekDayData = this._GetDayData();
     this._ConfigureWeekDays(element, WeekDayData);
     this._Events(element);
+    this.EventEditForm = new EventEditForm(this.WeekPlannerView.GetRootElement());
   }
 
   _GetDayData() {
@@ -34,12 +36,12 @@ export default class WeekPlanner {
           (e.offsetY / e.target.offsetHeight) * 96
         );
         this.WeekDays[colIndex].AddEventToDay(yPositionPercent, colIndex);
-
       }
       if (e.target && e.target.classList.contains("wkPlan-event")){
         //position one is set to the column and position two is set to event id.
-          var dataValueArray = e.target.getAttribute("data-value").split("_");
-        e.target.style.backgroundColor = "red";
+          let dataValueArray = e.target.getAttribute("data-value").split("_");
+          this.EventEditForm.ShowEditForm();
+          e.target.style.backgroundColor = "red";
       }
     });
   }

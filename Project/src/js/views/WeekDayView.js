@@ -15,6 +15,14 @@ export default class WeekDayView {
     return htmlMarkup;
   }
 
+  _FindContainer(){
+    
+  }
+
+  GetContainer(){
+    return 
+  }
+
   static RenderView(element, dayData, dayIndex) {
     let rootElement = document.querySelector(`.${element} .wkPlan-col`);
     if (typeof rootElement != "undefined" && rootElement != null) {

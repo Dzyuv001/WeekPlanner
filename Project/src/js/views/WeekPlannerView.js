@@ -1,7 +1,9 @@
 import * as base from "./base";
-
+import Util from "../views/util";
 export default class WeekPlannerView {
-  constructor() {}
+  constructor(element) {
+    this.rootElement = this._SetupRootElement(element);
+  }
 
   _RenderMarkup(is24Hours) {
     let htmlMarkup = `
@@ -22,12 +24,20 @@ export default class WeekPlannerView {
     return htmlMarkup;
   }
 
-   _RenderHorizontalLine() {
+  _RenderHorizontalLine() {
     let htmlMarkup = "";
     for (let i = 0; i < 24; i++) {
-      htmlMarkup +=`<hr class="wkPlan-line__hor-line">`
+      htmlMarkup += `<hr class="wkPlan-line__hor-line">`;
     }
     return htmlMarkup;
+  }
+
+  RemoveElement() {
+    Util.RemoveElement(this.rootElement);
+  }
+
+  GetRootElement() {
+    return this.rootElement;
   }
 
   _RenderTimes(is24Hours) {
@@ -49,11 +59,16 @@ export default class WeekPlannerView {
     return htmlMarkup;
   }
 
-  RenderView(element, is24Hours) {
-    //timeFormat
+  _SetupRootElement(element) {
     let rootElement = document.getElementsByClassName(element)[0];
-    if (typeof rootElement != "undefined" && rootElement != null) {
-      rootElement.innerHTML = this._RenderMarkup(is24Hours);
+    if (!(typeof rootElement != "undefined" && rootElement != null)) {
+      throw `Root Element ${element} is not found can not generate WeekPlanner`;
     }
+    return rootElement;
+  }
+
+  RenderView(is24Hours) {
+    //timeFormat
+    this.rootElement.innerHTML = this._RenderMarkup(is24Hours);
   }
 }
