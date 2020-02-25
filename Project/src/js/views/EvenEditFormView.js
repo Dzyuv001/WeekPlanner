@@ -67,7 +67,7 @@ export default class EventEditFromView {
       "darkpurple",
       "indigo",
       "blue",
-      "dodgerblue",
+      "dodgerblue wkPlan-colorpicker__color-picked",
       "cyan",
       "teal",
       "green",
@@ -81,7 +81,7 @@ export default class EventEditFromView {
       "bluegray"
     ];
     colorArray.forEach(color => {
-      htmlMarkup += `<div class="wkPlan-colorpicker__color wkPlan-colorpicker__color--${color}"></div>`;
+      htmlMarkup += `<div class="wkPlan-colorpicker__color wkPlan-background-css--${color}"></div>`;
     });
     let elementTemplate = `<div class="wkPlan-colorpicker__color wkPlan-colorpicker__color-"></div>`;
     return htmlMarkup;

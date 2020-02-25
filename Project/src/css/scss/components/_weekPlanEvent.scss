@@ -1,11 +1,8 @@
 .wkPlan-event {
-    position: absolute;
-    left: 0%;
-    width: 100%;
-    height:calc((4% / 96) * 100) ;
-    border-radius: 10px;
-    &__color-blue{
-        background:royalblue;
-
-    }
+  position: absolute;
+  left: 0%;
+  width: 100%;
+  height: calc((4% / 96) * 100);
+  border-radius: 10px;
 }
+@include backgroundColors($wkPlanBackground);

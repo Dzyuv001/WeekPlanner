@@ -12,11 +12,13 @@
   font-size: 2rem;
 
   &.show {
+    pointer-events: initial;
     opacity: 1;
     display: inline;
   }
 
   &.hide {
+    pointer-events: none;
     opacity: 0;
     display: none;
   }

@@ -13,7 +13,7 @@ export default class EventEditForm {
   HideEditForm() {}
 
   ShowEditForm() {
-    let posX,posY;
-    this.EventEditFormView.ShowEditFrom(posX,posY)
+    let posX, posY;
+    this.EventEditFormView.ShowEditFrom(posX, posY);
   }
 }

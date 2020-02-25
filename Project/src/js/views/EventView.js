@@ -4,7 +4,7 @@ export default class EventView {
   static _CreateEventMarkup(percentage, colIndex,eventId) {
     
     let htmlMarkup = `
-<div class="wkPlan-event wkPlan-event__color-blue" data-value="${colIndex}_${eventId}" style="top:${percentage}%;">
+<div class="wkPlan-event wkPlan-background-css--dodgerblue" data-value="${colIndex}_${eventId}" style="top:${percentage}%;">
 </div>`;
     return htmlMarkup;
   }
