@@ -11,7 +11,15 @@ export default class EventEditFromView {
     }
   }
 
-  ShowEditFrom() {
+  ShowEditFrom(isLeftPosition) {
+    const parentClassName = "wkPlan-editform__position";
+    const positionClassNames = [parentClassName+"--left",parentClassName+"--right"];
+    const positionClass = isLeftPosition ? positionClassNames[0] : positionClassNames[1];
+    positionClassNames.forEach(e=>{
+      this.formElement.classList.remove(e);
+    });
+    this.formElement.classList.add(parentClassName);
+    this.formElement.classList.add(positionClass);
     this.formElement.classList.add("show");
     this.formElement.classList.remove("hide");
   }
@@ -37,19 +45,19 @@ export default class EventEditFromView {
     <div class="d-flex justify-content-between">
       <div class="form-group">
         <label for="txtStartTime">Start Time</label>
-        <input type="text" name="txtStartTime" id="txtStartTime" class="form-control wkPlan-editform__textbox" />
+        <input type="time" name="txtStartTime" id="txtStartTime" class="form-control wkPlan-editform__textbox" />
       </div>
       <div class="form-group">
         <label for="txtEndTime">End Time</label>
-        <input type="text" name="txtEndTime" id="txtEndTime" class="form-control wkPlan-editform__textbox" />
+        <input type="time" name="txtEndTime" id="txtEndTime" class="form-control wkPlan-editform__textbox" />
       </div>
     </div>
     <div class="wkPlan-editform__colors wkPlan-colorpicker d-flex justify-content- flex-wrap">
     ${this._GenerateColorPickerMarkup()}
     </div>
     <div class="form-group">
-      <button class="btn btn-primary wkPlan-editForm--save" type=""button">Save</button>
-      <button class="btn wkPlan-editForm--cancel" type=""button">Cancel</button>
+      <button class="btn btn-primary wkPlan-editform--save" type=""button">Save</button>
+      <button class="btn wkPlan-editform--cancel" type=""button">Cancel</button>
     </div>
   </form>
 </div>

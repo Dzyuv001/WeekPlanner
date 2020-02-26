@@ -10,10 +10,11 @@ export default class EventEditForm {
     return EventEditFormView.GetEditFromData();
   }
 
-  HideEditForm() {}
+  HideEditForm() {
+    this.EventEditFormView.HideEditForm();
+  }
 
-  ShowEditForm() {
-    let posX, posY;
-    this.EventEditFormView.ShowEditFrom(posX, posY);
+  ShowEditForm(isLeftPosition) {
+    this.EventEditFormView.ShowEditFrom(isLeftPosition);
   }
 }

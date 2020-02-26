@@ -14,8 +14,12 @@ export default class Event {
     //change time position value to a percentage so
     //that the view can correctly position the element
     const percentage = (timePosition / 96) * 100;
-  
+
     EventView.RenderEvent(element, colIndex, eventId, percentage);
+  }
+
+  RemoveEvent(element, colIndex, eventId) {
+    EventView.RemoveEvent(element, colIndex, eventId);
   }
 
   SetTimes() {}
