@@ -1,30 +1,44 @@
 import Util from "./util";
-
+import colorArray from "../JSON/ColorNames.json";
 export default class EventView {
-  constructor() {}
+  constructor(parentElement, percentage, colIndex, eventId) {
+    this.eventElement = this.RenderEvent(
+      parentElement,
+      percentage,
+      colIndex,
+      eventId
+    );
+  }
 
-  static _CreateEventMarkup(percentage, colIndex, eventId) {
+  _CreateEventMarkup(percentage, colIndex, eventId) {
     let htmlMarkup = `
 <div class="wkPlan-event wkPlan-background-css--dodgerblue" data-value="${colIndex}_${eventId}" style="top:${percentage}%;">
 </div>`;
     return htmlMarkup;
   }
 
-  static RemoveEvent(element, colIndex, eventId) {
-    const eventElement = element.querySelector(
-      `[data-value="${colIndex}_${eventId}"]`
-    );
-    if (typeof eventElement != "undefined" && eventElement != null) {
-      Util.RemoveElement(eventElement);
-    }
+  RemoveEvent() {
+    Util.RemoveElement(this.eventElement);
   }
 
-  static RenderEvent(element, colIndex, eventId, percentage) {
-    if (typeof element != "undefined" && element != null) {
-      element.insertAdjacentHTML(
+  UpdateEventUi(eventData) {
+    this.eventElement.setAttribute(
+      "class",
+      `wkPlan-event wkPlan-background-css--${colorArray[eventData.colorIndex]}`
+    );
+  }
+
+  RenderEvent(parentElement, percentage, colIndex, eventId) {
+    if (typeof parentElement != "undefined" && parentElement != null) {
+      parentElement.insertAdjacentHTML(
         "beforeend",
         this._CreateEventMarkup(percentage, colIndex, eventId)
       );
+      return parentElement.querySelector(
+        `[data-value="${colIndex}_${eventId}"]`
+      );
+    } else {
+      throw "Event could not be created";
     }
   }
 }

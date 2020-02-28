@@ -3,6 +3,7 @@ import WeekDay from "../controllers/WeekDaysController";
 import WeekPlannerModel from "../models/WeekPlannerModel";
 import EventEditForm from "../controllers/EventEditFormController";
 import States from "../models/State";
+import EventDto from "../models/Dto/EventDto";
 export default class WeekPlanner {
   constructor(element, config, data) {
     this.WeekPlannerView = new WeekPlannerView(element);
@@ -52,7 +53,6 @@ export default class WeekPlanner {
           const dataValues = e.target.getAttribute("data-value").split("_");
           const colIndex = dataValues[0];
           const actualDayIndex = dataValues[1];
-          console.log("the y position",yPositionElement);
           const currentDay = this.WeekDays[colIndex];
           currentDay.AddEventToDay(yPositionElement, colIndex);
 
@@ -77,17 +77,10 @@ export default class WeekPlanner {
           this.EventEditForm.ShowEditForm(isLeftPosition);
         }
         if (e.target.classList.contains("wkPlan-colorpicker__color")) {
-          const colorpickedClass = "wkPlan-colorpicker__color-picked";
-          let currentlySelected = e.target.parentNode.getElementsByClassName(
-            colorpickedClass
-          )[0];
-          if (
-            typeof currentlySelected != "undefined" &&
-            currentlySelected != null
-          ) {
-            currentlySelected.classList.remove(colorpickedClass);
-          }
-          e.target.classList.add(colorpickedClass);
+          const selectedColor = this.EventEditForm.GetPickedColor(e.target);
+          const [dayIndex, eventIndex] = this._state.GetCurrentEventPosition();
+          const userInput = new EventDto(selectedColor);
+          this.WeekDays[dayIndex].SetSelectedEvenData(eventIndex,userInput);
         }
         if (e.target.classList.contains("wkPlan-editform--save")) {
         }

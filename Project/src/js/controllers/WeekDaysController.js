@@ -24,8 +24,12 @@ export default class WeekDay {
     return this.lastEventId;
   }
 
-  GetSelectedEventData(index) {
-    return this.events[index].GetEventModelData();
+  GetSelectedEventData(eventIndex) {
+    return this.events[eventIndex].GetEventModelData();
+  }
+
+  SetSelectedEvenData(eventIndex, eventData) {
+    this.events[eventIndex].SetEventData(eventData);
   }
 
   GetLastEvent() {

@@ -1,4 +1,6 @@
 import Util from "../views/util";
+import colorArray from "../JSON/ColorNames.json";
+
 export default class EventEditFromView {
   constructor(rootElement) {
     this.rootElement = rootElement;
@@ -59,6 +61,20 @@ export default class EventEditFromView {
     return true;
   }
 
+  GetSelectedColor(selectedColorElement) {
+    //get the picked event
+    const colorpickedClass = "wkPlan-colorpicker__color-picked";
+    let currentlySelected = this.rootElement.getElementsByClassName(
+      colorpickedClass
+    )[0];
+
+    if (typeof currentlySelected != "undefined" && currentlySelected != null) {
+      currentlySelected.classList.remove(colorpickedClass);
+    }
+    selectedColorElement.classList.add(colorpickedClass);
+    return selectedColorElement.getAttribute("data-value");
+  }
+
   _RenderMarkup(rootElement) {
     let htmlMarkup = `
 <div class="wkPlan-editform hide d-flex flex-column">
@@ -100,30 +116,9 @@ export default class EventEditFromView {
 
   _GenerateColorPickerMarkup() {
     let htmlMarkup = "";
-    const colorArray = [
-      "red",
-      "pink",
-      "purple",
-      "darkpurple",
-      "indigo",
-      "blue",
-      "dodgerblue wkPlan-colorpicker__color-picked",
-      "cyan",
-      "teal",
-      "green",
-      "lightgreen",
-      "lime",
-      "yellow",
-      "amber",
-      "orange",
-      "brown",
-      "gray",
-      "bluegray"
-    ];
-    colorArray.forEach(color => {
-      htmlMarkup += `<div class="wkPlan-colorpicker__color wkPlan-background-css--${color}"></div>`;
+    colorArray.forEach((color, i) => {
+      htmlMarkup += `<div class="wkPlan-colorpicker__color wkPlan-background-css--${color}" data-value="${i}"></div>`;
     });
-    let elementTemplate = `<div class="wkPlan-colorpicker__color wkPlan-colorpicker__color-"></div>`;
     return htmlMarkup;
   }
 }

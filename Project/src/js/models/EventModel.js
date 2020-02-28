@@ -9,7 +9,9 @@ export default class EventModel {
     this.colorIndex = colorIndex;
   }
 
-  UpdateModelData(data) {}
+  UpdateModelData(data) {
+    
+  }
 
   GetModelData() {
     return {

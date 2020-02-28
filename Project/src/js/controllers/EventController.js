@@ -2,23 +2,28 @@ import EventView from "../views/EventView";
 import EventModel from "../models/EventModel";
 export default class Event {
   constructor(
-    timePosition,
-    element,
+    positionPercentage,
+    parentElement,
     colIndex,
     eventId,
     eventName,
-    colorIndex = 6
+    colorIndex = 6,
+    
   ) {
     this.eventContinues = "";
-    this.eventModel = new EventModel(eventName, timePosition, colorIndex);
-    this.CreateEventUI(element, colIndex, eventId, timePosition);
-  }
-
-  CreateEventUI(element, colIndex, eventId, timePosition) {
-    //change time position value to a percentage so
-    //that the view can correctly position the element
-    const percentage = (timePosition / 96) * 100;
-    EventView.RenderEvent(element, colIndex, eventId, percentage);
+    this.eventModel = new EventModel(
+      eventName,
+      positionPercentage,
+      colorIndex,
+      colIndex,
+      eventId
+    );
+    this.EventView = new EventView(
+      parentElement,
+      positionPercentage,
+      colIndex,
+      eventId
+    );
   }
 
   UpdateEventModelData() {
@@ -29,11 +34,12 @@ export default class Event {
     return this.eventModel.GetModelData();
   }
 
-  SetEventModelData() {
-    this.eventModel;
+  SetEventData(eventData) {
+    this.eventModel.UpdateModelData(eventData);
+    this.EventView.UpdateEventUi(eventData);
   }
 
-  RemoveEvent(element, colIndex, eventId) {
-    EventView.RemoveEvent(element, colIndex, eventId);
+  RemoveEvent() {
+    this.EventView.RemoveEvent();
   }
 }
