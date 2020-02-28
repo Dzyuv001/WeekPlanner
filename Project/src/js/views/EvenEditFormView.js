@@ -1,6 +1,7 @@
 import Util from "../views/util";
 export default class EventEditFromView {
   constructor(rootElement) {
+    this.rootElement = rootElement;
     this.formElement = this._RenderMarkup(rootElement);
   }
 
@@ -13,9 +14,14 @@ export default class EventEditFromView {
 
   ShowEditFrom(isLeftPosition) {
     const parentClassName = "wkPlan-editform__position";
-    const positionClassNames = [parentClassName+"--left",parentClassName+"--right"];
-    const positionClass = isLeftPosition ? positionClassNames[0] : positionClassNames[1];
-    positionClassNames.forEach(e=>{
+    const positionClassNames = [
+      parentClassName + "--left",
+      parentClassName + "--right"
+    ];
+    const positionClass = isLeftPosition
+      ? positionClassNames[0]
+      : positionClassNames[1];
+    positionClassNames.forEach(e => {
       this.formElement.classList.remove(e);
     });
     this.formElement.classList.add(parentClassName);
@@ -27,6 +33,25 @@ export default class EventEditFromView {
   HideEditForm() {
     this.formElement.classList.add("hide");
     this.formElement.classList.remove("show");
+  }
+
+  UpdateEditFrom(eventData) {
+    this.formElement.querySelector("#txtEventName").value = eventData.name;
+    this.formElement.querySelector("#txtStartTime").value = eventData.startTime;
+    this.formElement.querySelector("#txtEndTime").value = eventData.endTime;
+    const pickedColorClass = "wkPlan-colorpicker__color-picked";
+    this.formElement
+      .querySelector(`.${pickedColorClass}`)
+      .classList.remove(pickedColorClass);
+    //
+    const colors = this.formElement.querySelectorAll(
+      ".wkPlan-colorpicker__color"
+    );
+    colors[eventData.colorIndex].classList.add(pickedColorClass);
+  }
+
+  _ClearEditForm() {
+    this.formElement.getElementById("txtEventName").value = "";
   }
 
   _ValidateDate() {
@@ -64,6 +89,13 @@ export default class EventEditFromView {
       `;
     rootElement.insertAdjacentHTML("beforeend", htmlMarkup);
     return rootElement.querySelector(".wkPlan-editform");
+  }
+
+  SetTimeInputs(startTime, endTime) {
+    const txtStartTime = this.formElement.getElementById("txtStartTime");
+    const txtEndTime = this.formElement.getElementById("txtEndTime");
+    txtStartTime.value = startTime;
+    txtEndTime.value = endTime;
   }
 
   _GenerateColorPickerMarkup() {

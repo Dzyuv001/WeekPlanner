@@ -46,23 +46,26 @@ export default class WeekPlanner {
               dayIndex,
               eventIndex
             ] = this._state.GetCurrentEventPosition();
-            console.log(this.WeekDays[dayIndex]);
             this.WeekDays[dayIndex].RemoveEventFromDay(dayIndex, eventIndex);
           }
           //used to get the percentage click position
           const dataValues = e.target.getAttribute("data-value").split("_");
           const colIndex = dataValues[0];
           const actualDayIndex = dataValues[1];
-          const yTimePosition = (yPositionElement / 100) * 96;
+          console.log("the y position",yPositionElement);
           const currentDay = this.WeekDays[colIndex];
-          currentDay.AddEventToDay(yTimePosition, colIndex);
+          currentDay.AddEventToDay(yPositionElement, colIndex);
+
+          //update the edit form to reflect the new event
+          const eventIndex = currentDay.GetCurrentEventIndex();
+          const eventData = currentDay.GetSelectedEventData(eventIndex);
+          this.EventEditForm.PassDataForUiUpdate(eventData);
 
           //figure out where the edit form should display
           const isLeftPosition = colIndex > 3 ? true : false;
           this.EventEditForm.ShowEditForm(isLeftPosition);
 
           //Update the state machine
-          const eventIndex = currentDay.GetCurrentEventIndex();
           this._state.SetCurrentEventPosition(colIndex, eventIndex);
           this._state.SetEventSavedState(false);
         }

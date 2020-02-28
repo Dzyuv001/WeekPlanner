@@ -14,7 +14,11 @@ export default class EventEditForm {
     this.EventEditFormView.HideEditForm();
   }
 
-  ShowEditForm(isLeftPosition) {
-    this.EventEditFormView.ShowEditFrom(isLeftPosition);
+  PassDataForUiUpdate(eventData){
+    this.EventEditFormView.UpdateEditFrom(eventData);
+  }
+
+  ShowEditForm(isLeftPosition, startTime, endTime) {
+    this.EventEditFormView.ShowEditFrom(isLeftPosition, startTime, endTime);
   }
 }

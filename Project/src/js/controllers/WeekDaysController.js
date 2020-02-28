@@ -5,14 +5,14 @@ import WeekDayModel from "../models/WeekDayModel";
 export default class WeekDay {
   constructor(element, WeekDayName, index, colIndex) {
     this.lastEventId = -1;
-    this.Events = {};
+    this.events = {};
     this.colIndex = colIndex;
     this.element = WeekDayView.RenderView(element, WeekDayName, index);
   }
 
   AddEventToDay(yPositionPercent, colIndex) {
     this.lastEventId += 1;
-    this.Events[this.lastEventId] = new Event(
+    this.events[this.lastEventId] = new Event(
       yPositionPercent,
       this.element,
       colIndex,
@@ -24,8 +24,16 @@ export default class WeekDay {
     return this.lastEventId;
   }
 
+  GetSelectedEventData(index) {
+    return this.events[index].GetEventModelData();
+  }
+
+  GetLastEvent() {
+    return this.events[this.lastEventId];
+  }
+
   RemoveEventFromDay(colIndex, eventId) {
-    this.Events[eventId].RemoveEvent(this.element, colIndex, eventId);
-    delete this.Events[eventId];
+    this.events[eventId].RemoveEvent(this.element, colIndex, eventId);
+    delete this.events[eventId];
   }
 }
