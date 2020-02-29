@@ -17,11 +17,15 @@ export default class Event {
       colIndex,
       eventId
     );
+    const [startTime,endTime] = this.eventModel.GetEventTimes();
+    console.log("the times", this.eventModel.GetEventTimes());
     this.EventView = new EventView(
       parentElement,
       positionPercentage,
       colIndex,
-      eventId
+      eventId,
+      startTime,
+      endTime
     );
   }
 

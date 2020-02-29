@@ -9,9 +9,7 @@ export default class EventModel {
     this.colorIndex = colorIndex;
   }
 
-  UpdateModelData(data) {
-    
-  }
+  UpdateModelData(data) {}
 
   GetModelData() {
     return {
@@ -21,6 +19,10 @@ export default class EventModel {
       endTime: this.endTime,
       eventId: this.eventName
     };
+  }
+
+  GetEventTimes() {
+    return [this.startTime, this.endTime];
   }
 
   _FormatTimeInput(time) {
@@ -46,7 +48,6 @@ export default class EventModel {
       endTime: `${endHour}:${minute}`,
       eventContinues
     };
-    console.log(eventTimes);
     return eventTimes;
   }
 }
