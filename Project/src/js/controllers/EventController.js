@@ -7,8 +7,7 @@ export default class Event {
     colIndex,
     eventId,
     eventName,
-    colorIndex = 6,
-    
+    colorIndex = 6
   ) {
     this.eventContinues = "";
     this.eventModel = new EventModel(
