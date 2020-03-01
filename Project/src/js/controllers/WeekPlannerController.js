@@ -29,6 +29,16 @@ export default class WeekPlanner {
     }
   }
 
+
+  _EventDelete(){
+    const [
+      dayIndex,
+      eventIndex
+    ] = this._state.GetCurrentEventPosition();
+    this.WeekDays[dayIndex].RemoveEventFromDay(dayIndex, eventIndex);
+    this._state.SetEventSavedState(true);
+  }
+
   _Events(element) {
     this.WeekPlannerView.GetRootElement().addEventListener("click", e => {
       e.preventDefault();
@@ -43,11 +53,7 @@ export default class WeekPlanner {
           if (this._state.GetEventSavedState()) {
             this._state.SetEventSavedState(false);
           } else {
-            const [
-              dayIndex,
-              eventIndex
-            ] = this._state.GetCurrentEventPosition();
-            this.WeekDays[dayIndex].RemoveEventFromDay(dayIndex, eventIndex);
+            this._EventDelete();
           }
           //used to get the percentage click position
           const dataValues = e.target.getAttribute("data-value").split("_");
@@ -80,12 +86,13 @@ export default class WeekPlanner {
           const selectedColor = this.EventEditForm.GetPickedColor(e.target);
           const [dayIndex, eventIndex] = this._state.GetCurrentEventPosition();
           const userInput = new EventDto(selectedColor);
-          this.WeekDays[dayIndex].SetSelectedEvenData(eventIndex,userInput);
+          this.WeekDays[dayIndex].SetSelectedEvenData(eventIndex, userInput);
         }
         if (e.target.classList.contains("wkPlan-editform--save")) {
         }
         if (e.target.classList.contains("wkPlan-editform--cancel")) {
           this.EventEditForm.HideEditForm();
+          this._EventDelete();
         }
       }
     });

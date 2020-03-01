@@ -1,7 +1,5 @@
 export default class State {
   constructor() {
-    this.lastEventDay = -1;
-    this.lastEventIndex = -1;
     this.currentEventDay = -1;
     this.currentEventIndex = -1;
     this.saved = true;
