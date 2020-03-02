@@ -28,6 +28,11 @@ export default class Event {
     );
   }
 
+  UpdateEvent(eventData){
+    this.eventModel.UpdateModelData(eventData);
+    this.EventView.UpdateEventUi(eventData);
+  }
+
   UpdateEventModelData() {
     this.eventModel.UpdateModelData();
   }

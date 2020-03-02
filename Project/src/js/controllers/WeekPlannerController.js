@@ -29,12 +29,8 @@ export default class WeekPlanner {
     }
   }
 
-
-  _EventDelete(){
-    const [
-      dayIndex,
-      eventIndex
-    ] = this._state.GetCurrentEventPosition();
+  _EventDelete() {
+    const [dayIndex, eventIndex] = this._state.GetCurrentEventPosition();
     this.WeekDays[dayIndex].RemoveEventFromDay(dayIndex, eventIndex);
     this._state.SetEventSavedState(true);
   }
@@ -78,9 +74,10 @@ export default class WeekPlanner {
 
         if (e.target.classList.contains("wkPlan-event")) {
           //position one is set to the column and position two is set to event id.
-          let dataValueArray = e.target.getAttribute("data-value").split("_");
-          const isLeftPosition = dataValueArray[0] > 4 ? true : false;
+          let [dayIndex, eventIndex] = e.target.getAttribute("data-value").split("_");
+          const isLeftPosition = dayIndex > 4 ? true : false;
           this.EventEditForm.ShowEditForm(isLeftPosition);
+          this._state.SetCurrentEventPosition();
         }
         if (e.target.classList.contains("wkPlan-colorpicker__color")) {
           const selectedColor = this.EventEditForm.GetPickedColor(e.target);
@@ -89,6 +86,10 @@ export default class WeekPlanner {
           this.WeekDays[dayIndex].SetSelectedEvenData(eventIndex, userInput);
         }
         if (e.target.classList.contains("wkPlan-editform--save")) {
+          const eventData = this.EventEditForm
+          const[dayIndex, eventIndex] = this._state.GetCurrentEventIndex();
+          
+          this.WeekDay[dayIndex].UpdateEvent(eventIndex, eventData);
         }
         if (e.target.classList.contains("wkPlan-editform--cancel")) {
           this.EventEditForm.HideEditForm();

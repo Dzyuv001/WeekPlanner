@@ -20,6 +20,10 @@ export default class WeekDay {
     );
   }
 
+  UpdateEvent(eventIndex, eventData) {
+    this.events[eventIndex].UpdateEvent(eventData);
+  }
+
   GetCurrentEventIndex() {
     return this.lastEventId;
   }

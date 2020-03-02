@@ -1,5 +1,6 @@
 import Util from "../views/util";
 import colorArray from "../JSON/ColorNames.json";
+import EventDto from "../models/Dto/EventDto";
 
 export default class EventEditFromView {
   constructor(rootElement) {
@@ -50,6 +51,32 @@ export default class EventEditFromView {
       ".wkPlan-colorpicker__color"
     );
     colors[eventData.colorIndex].classList.add(pickedColorClass);
+  }
+
+  GetEditFrom() {
+    if (this._ValidateDate()) {
+      const eventName = this.formElement.querySelector("#txtEventName").value;
+      const eventStartTime = this.formElement.querySelector("#txtStartTime")
+        .value;
+      const eventEndTime = this.formElement.querySelector("#txtEndTime").value;
+      const eventColorIndex = this.formElement
+        .querySelector("wkPlan-colorpicker__color-picked")
+        .getAttribute("data-value");
+
+      if (selectedColor === -1) {
+        throw "Some thing has gone wrong, there is no color being selected";
+      }
+
+      const eventData = new EventDto(
+        eventColorIndex,
+        eventName,
+        eventStartTime,
+        endTime
+      );
+      return eventData;
+    }
+
+    return -1;
   }
 
   _ClearEditForm() {
