@@ -79,7 +79,7 @@ export default class WeekPlanner {
             .split("_");
           const isLeftPosition = dayIndex > 4 ? true : false;
           this.EventEditForm.ShowEditForm(isLeftPosition);
-          this._state.SetCurrentEventPosition();
+          this._state.SetCurrentEventPosition(dayIndex, eventIndex);
         }
         if (e.target.classList.contains("wkPlan-colorpicker__color")) {
           const selectedColor = this.EventEditForm.GetPickedColor(e.target);

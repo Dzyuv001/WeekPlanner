@@ -38,6 +38,7 @@ export default class EventView {
   }
 
   UpdateEventUi(eventData) {
+    console.log('eventData :', eventData);
     const startPercent =
       eventData.startTime !== undefined
         ? this._ConvertTimeToPercentage(eventData.startTime)
@@ -50,8 +51,10 @@ export default class EventView {
       "class",
       `wkPlan-event wkPlan-background-css--${colorArray[eventData.colorIndex]}`
     );
-    if (startPercent) this.eventElement.style.top = startPercent+"%";
-    if (endPercent) this.eventElement.style.height = (endPercent-startPercent)+"%";
+    if (eventData.name != undefined) this.eventElement.querySelector(".wkPlan-event__name").innerText = eventData.name;
+    if (startPercent) this.eventElement.style.top = startPercent + "%";
+    if (endPercent)
+      this.eventElement.style.height = endPercent - startPercent + "%";
     if (eventData.startTime) {
       this.eventElement.querySelector(".wkPlan-event__start-time").innerText =
         eventData.startTime;
