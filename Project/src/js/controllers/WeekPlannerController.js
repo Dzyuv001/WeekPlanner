@@ -93,6 +93,7 @@ export default class WeekPlanner {
           if (eventData !== -1) {
             this.WeekDays[dayIndex].UpdateEvent(eventIndex, eventData);
             this.EventEditForm.HideEditForm();
+            this._state.SetEventSavedState(true);
           }
         }
         if (e.target.classList.contains("wkPlan-editform--cancel")) {
