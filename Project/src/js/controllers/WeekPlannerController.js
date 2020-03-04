@@ -74,7 +74,9 @@ export default class WeekPlanner {
 
         if (e.target.classList.contains("wkPlan-event")) {
           //position one is set to the column and position two is set to event id.
-          let [dayIndex, eventIndex] = e.target.getAttribute("data-value").split("_");
+          let [dayIndex, eventIndex] = e.target
+            .getAttribute("data-value")
+            .split("_");
           const isLeftPosition = dayIndex > 4 ? true : false;
           this.EventEditForm.ShowEditForm(isLeftPosition);
           this._state.SetCurrentEventPosition();
@@ -86,10 +88,12 @@ export default class WeekPlanner {
           this.WeekDays[dayIndex].SetSelectedEvenData(eventIndex, userInput);
         }
         if (e.target.classList.contains("wkPlan-editform--save")) {
-          const eventData = this.EventEditForm
-          const[dayIndex, eventIndex] = this._state.GetCurrentEventIndex();
-          
-          this.WeekDay[dayIndex].UpdateEvent(eventIndex, eventData);
+          const eventData = this.EventEditForm.GetEditFormData();
+          const [dayIndex, eventIndex] = this._state.GetCurrentEventPosition();
+          if (eventData !== -1) {
+            this.WeekDays[dayIndex].UpdateEvent(eventIndex, eventData);
+            this.EventEditForm.HideEditForm();
+          }
         }
         if (e.target.classList.contains("wkPlan-editform--cancel")) {
           this.EventEditForm.HideEditForm();

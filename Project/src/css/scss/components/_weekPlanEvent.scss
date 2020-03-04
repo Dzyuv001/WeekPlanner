@@ -9,26 +9,24 @@
   padding: 1rem;
   font-size: 1.5rem;
 
-&__name ,  &__times {
-  display: block;
-}
+  &__name,
+  &__times {
+    display: block;
+  }
 
   &__name {
   }
 
   &__times {
-
   }
 
   &__start-time {
-    
   }
   &__end-time {
-
   }
 
   &:before {
-    content: none;
+    content: none !important;
   }
   &--animated {
     animation-name: wkPlan-event-bounce;

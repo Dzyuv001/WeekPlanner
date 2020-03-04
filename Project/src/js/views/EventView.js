@@ -20,7 +20,7 @@ export default class EventView {
     this._BounceEvent();
   }
 
-  _CreateEventMarkup(percentage, colIndex, eventId,startTime,endTime) {
+  _CreateEventMarkup(percentage, colIndex, eventId, startTime, endTime) {
     let htmlMarkup = `
 <div class="wkPlan-event wkPlan-background-css--dodgerblue" data-value="${colIndex}_${eventId}" style="top:${percentage}%;">
   <p class="wkPlan-event__name">Event Name</p>
@@ -50,14 +50,14 @@ export default class EventView {
       "class",
       `wkPlan-event wkPlan-background-css--${colorArray[eventData.colorIndex]}`
     );
-    if (startPercent) this.eventElement.style.top = startPercent;
-    if (endPercent) this.eventElement.style.height = endPercent;
+    if (startPercent) this.eventElement.style.top = startPercent+"%";
+    if (endPercent) this.eventElement.style.height = (endPercent-startPercent)+"%";
     if (eventData.startTime) {
-      this.eventElement.querySelector(".wkPlan-event__start-time").value =
+      this.eventElement.querySelector(".wkPlan-event__start-time").innerText =
         eventData.startTime;
     }
     if (eventData.startTime) {
-      this.eventElement.querySelector(".wkPlan-event__end-time").value =
+      this.eventElement.querySelector(".wkPlan-event__end-time").innerText =
         eventData.endTime;
     }
     this._BounceEvent();
@@ -88,7 +88,13 @@ export default class EventView {
     if (typeof parentElement != "undefined" && parentElement != null) {
       parentElement.insertAdjacentHTML(
         "beforeend",
-        this._CreateEventMarkup(percentage, colIndex, eventId,startTime,endTime)
+        this._CreateEventMarkup(
+          percentage,
+          colIndex,
+          eventId,
+          startTime,
+          endTime
+        )
       );
       return parentElement.querySelector(
         `[data-value="${colIndex}_${eventId}"]`

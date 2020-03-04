@@ -1,4 +1,4 @@
-import EventView from "../views/EventView";
+import EventView from "../views/eventView";
 import EventModel from "../models/EventModel";
 export default class Event {
   constructor(
@@ -18,7 +18,7 @@ export default class Event {
       eventId
     );
     const [startTime,endTime] = this.eventModel.GetEventTimes();
-    this.EventView = new EventView(
+    this.eventView = new EventView(
       parentElement,
       positionPercentage,
       colIndex,
@@ -30,7 +30,7 @@ export default class Event {
 
   UpdateEvent(eventData){
     this.eventModel.UpdateModelData(eventData);
-    this.EventView.UpdateEventUi(eventData);
+    this.eventView.UpdateEventUi(eventData);
   }
 
   UpdateEventModelData() {
@@ -43,10 +43,10 @@ export default class Event {
 
   SetEventData(eventData) {
     this.eventModel.UpdateModelData(eventData);
-    this.EventView.UpdateEventUi(eventData);
+    this.eventView.UpdateEventUi(eventData);
   }
 
   RemoveEvent() {
-    this.EventView.RemoveEvent();
+    this.eventView.RemoveEvent();
   }
 }

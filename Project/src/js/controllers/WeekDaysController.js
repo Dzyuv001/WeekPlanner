@@ -21,6 +21,7 @@ export default class WeekDay {
   }
 
   UpdateEvent(eventIndex, eventData) {
+    console.log("the data being passed to the event is: ", eventData);
     this.events[eventIndex].UpdateEvent(eventData);
   }
 

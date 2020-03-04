@@ -7,7 +7,7 @@ export default class EventEditForm {
   }
 
   GetEditFormData() {
-    return EventEditFormView.GetEditFromData();
+    return this.EventEditFormView.GetEditFromData();
   }
 
   HideEditForm() {

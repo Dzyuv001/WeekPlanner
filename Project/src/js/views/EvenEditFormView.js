@@ -53,17 +53,20 @@ export default class EventEditFromView {
     colors[eventData.colorIndex].classList.add(pickedColorClass);
   }
 
-  GetEditFrom() {
+  GetEditFromData() {
     if (this._ValidateDate()) {
       const eventName = this.formElement.querySelector("#txtEventName").value;
       const eventStartTime = this.formElement.querySelector("#txtStartTime")
         .value;
       const eventEndTime = this.formElement.querySelector("#txtEndTime").value;
+      console.log(
+        this.formElement.querySelector(".wkPlan-colorpicker__color-picked")
+      );
       const eventColorIndex = this.formElement
-        .querySelector("wkPlan-colorpicker__color-picked")
+        .querySelector(".wkPlan-colorpicker__color-picked")
         .getAttribute("data-value");
 
-      if (selectedColor === -1) {
+      if (eventColorIndex === -1) {
         throw "Some thing has gone wrong, there is no color being selected";
       }
 
@@ -71,7 +74,7 @@ export default class EventEditFromView {
         eventColorIndex,
         eventName,
         eventStartTime,
-        endTime
+        eventEndTime
       );
       return eventData;
     }
